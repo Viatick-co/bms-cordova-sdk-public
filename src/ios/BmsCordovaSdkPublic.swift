@@ -28,38 +28,38 @@
 	}
 
 	@objc(setting:)
-    func setting(command: CDVInvokedUrlCommand) {
-        var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
-        
-        let alert = command.arguments[0] as? Bool ?? false;
-        let background = command.arguments[1] as? Bool ?? false;
-        let site = command.arguments[2] as? Bool ?? false;
-        let attendance = command.arguments[3] as? Bool ?? false;
-        let tracking = command.arguments[5] as? Bool ?? false;
-        viaBmsCtrl.setting(alert: alert, background: background, site: site, attendance: attendance, tracking: tracking);
-        
-        pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "setting done!");
-        
-        self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
-    }
+	func setting(command: CDVInvokedUrlCommand) {
+		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
+		
+		let alert = command.arguments[0] as? Bool ?? false;
+		let background = command.arguments[1] as? Bool ?? false;
+		let site = command.arguments[2] as? Bool ?? false;
+		let attendance = command.arguments[3] as? Bool ?? false;
+		let tracking = command.arguments[5] as? Bool ?? false;
+		viaBmsCtrl.setting(alert: alert, background: background, site: site, attendance: attendance, tracking: tracking);
+		
+		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "setting done!");
+		
+		self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
+	}
 
-    @objc(startSDK:)
-    func startSDK(command: CDVInvokedUrlCommand) {
-        var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
-        
-        viaBmsCtrl.startBmsService();
-        
-        pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "startSDK done!");
-        self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
-    }
-    
-    @objc(endSDK:)
-    func endSDK(command: CDVInvokedUrlCommand) {
-        var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
-        
-        viaBmsCtrl.stopBmsService();
-        
-        pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "endSDK done!");
-        self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
-    }
+	@objc(startSDK:)
+	func startSDK(command: CDVInvokedUrlCommand) {
+		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
+		
+		viaBmsCtrl.startBmsService();
+		
+		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "startSDK done!");
+		self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
+	}
+	
+	@objc(endSDK:)
+	func endSDK(command: CDVInvokedUrlCommand) {
+		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
+		
+		viaBmsCtrl.stopBmsService();
+		
+		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "endSDK done!");
+		self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
+	}
 }
