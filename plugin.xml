@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-viatick-plugins-bms-sdk-public" version="0.1.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>BmsCordovaSdkPublic</name>
+	<js-module name="BmsCordovaSdkPublic" src="www/BmsCordovaSdkPublic.js">
+		<clobbers target="BmsCordovaSdkPublic" />
+	</js-module>
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="BmsCordovaSdkPublic">
+				<param name="ios-package" value="BmsCordovaSdkPublic" />
+			</feature>
+		</config-file>
+		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
+	</platform>
+</plugin>
