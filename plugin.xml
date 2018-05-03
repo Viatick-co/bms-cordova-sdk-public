@@ -11,5 +11,21 @@
 			</feature>
 		</config-file>
 		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
+		<source-file src="src/ios/libBLE MS.a" framework="true" />
+		<!-- <source-file src="src/ios/CONTROLLER/ViaApiCtrl.swift" />
+		<source-file src="src/ios/CONTROLLER/ViaBackgroundTaskCenter.swift" />
+		<source-file src="src/ios/CONTROLLER/ViaBmsCtrl.swift" />
+		<source-file src="src/ios/CONTROLLER/ViaIBeaconCtrl.swift" />
+		<source-file src="src/ios/CONTROLLER/ViaNotificationCenter.swift" />
+		<source-file src="src/ios/VIEW/ViaMinisiteTableViewCell.swift" />
+		<source-file src="src/ios/VIEW/ViaMinisiteTableViewCell.xib" />
+		<source-file src="src/ios/VIEW/ViaMinisiteTableViewController.swift" />
+		<source-file src="src/ios/VIEW/ViaMinisiteTableViewController.xib" />
+		<source-file src="src/ios/VIEW/ViaMinisiteViewController.swift" />
+		<source-file src="src/ios/VIEW/ViaMinisiteViewController.xib" />
+		<source-file src="src/ios/MODEL/ViaBmsUtil.swift" />
+		<source-file src="src/ios/MODEL/ViaIBeacon.swift" />
+		<source-file src="src/ios/MODEL/ViaMinisite.swift" />
+		<source-file src="src/ios/RES/ViaIcons.xcassets" /> -->
 	</platform>
 </plugin>
