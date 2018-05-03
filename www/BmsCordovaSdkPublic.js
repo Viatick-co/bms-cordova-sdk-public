@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
 
-exports.initCustomer = function (arg0, success, error) {
-    exec(success, error, 'BmsCordovaSdkPublic', 'initCustomer', [arg0]);
+exports.initCustomer = function (identifier, phone, email, success, error) {
+    exec(success, error, 'BmsCordovaSdkPublic', 'initCustomer', [identifier, phone, email]);
 };

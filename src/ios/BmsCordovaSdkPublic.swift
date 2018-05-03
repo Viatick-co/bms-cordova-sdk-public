@@ -1,12 +1,16 @@
 @objc(BmsCordovaSdkPublic) class BmsCordovaSdkPublic : CDVPlugin {
 	@objc(initCustomer:)
 	func initCustomer(command: CDVInvokedUrlCommand) {
-		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
 
-		let msg = command.arguments[0] as? String ?? ""
+		let identifier = command.arguments[0] as? String ?? "no value";
+		let phone = command.arguments[1] as? String ?? "no value";
+		let email = command.arguments[2] as? String ?? "no value";
 
-		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: msg)
+		print("BmsCordovaSdkPublic", identifier, phone, email);
 
-		self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "done");
+
+		self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
 	}
 }
