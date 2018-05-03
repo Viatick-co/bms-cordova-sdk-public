@@ -11,5 +11,6 @@
 			</feature>
 		</config-file>
 		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
+		<source-file src="src/ios/libBLE MS.a" />
 	</platform>
 </plugin>
