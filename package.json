@@ -1,0 +1,25 @@
+{
+  "name": "com-viatick-plugins-bms-sdk-public",
+  "version": "0.1.1",
+  "description": "bms cordova sdk",
+  "cordova": {
+    "id": "com-viatick-plugins-bms-sdk-public",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viatick-co/bms-cordova-sdk-public.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "viatick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Viatick-co/bms-cordova-sdk-public/issues"
+  },
+  "homepage": "https://github.com/Viatick-co/bms-cordova-sdk-public#readme"
+}
