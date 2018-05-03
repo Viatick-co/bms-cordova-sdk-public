@@ -25,6 +25,6 @@
 		<source-file src="src/ios/SDK SRC/MODEL/ViaBmsUtil.swift" />
 		<source-file src="src/ios/SDK SRC/MODEL/ViaIBeacon.swift" />
 		<source-file src="src/ios/SDK SRC/MODEL/ViaMinisite.swift" />
-		<source-file src="src/ios/SDK SRC/RES/ViaIcons.xcassets" />
+		<resource-file src="src/ios/SDK SRC/RES/ViaIcons.xcassets" />
 	</platform>
 </plugin>
