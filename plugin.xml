@@ -11,21 +11,20 @@
 			</feature>
 		</config-file>
 		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
-		<source-file src="src/ios/libBLE MS.a" framework="true" />
-		<!-- <source-file src="src/ios/CONTROLLER/ViaApiCtrl.swift" />
-		<source-file src="src/ios/CONTROLLER/ViaBackgroundTaskCenter.swift" />
-		<source-file src="src/ios/CONTROLLER/ViaBmsCtrl.swift" />
-		<source-file src="src/ios/CONTROLLER/ViaIBeaconCtrl.swift" />
-		<source-file src="src/ios/CONTROLLER/ViaNotificationCenter.swift" />
-		<source-file src="src/ios/VIEW/ViaMinisiteTableViewCell.swift" />
-		<source-file src="src/ios/VIEW/ViaMinisiteTableViewCell.xib" />
-		<source-file src="src/ios/VIEW/ViaMinisiteTableViewController.swift" />
-		<source-file src="src/ios/VIEW/ViaMinisiteTableViewController.xib" />
-		<source-file src="src/ios/VIEW/ViaMinisiteViewController.swift" />
-		<source-file src="src/ios/VIEW/ViaMinisiteViewController.xib" />
-		<source-file src="src/ios/MODEL/ViaBmsUtil.swift" />
-		<source-file src="src/ios/MODEL/ViaIBeacon.swift" />
-		<source-file src="src/ios/MODEL/ViaMinisite.swift" />
-		<source-file src="src/ios/RES/ViaIcons.xcassets" /> -->
+		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaApiCtrl.swift" target-dir="SDK SRC/CONTROLLER/" />
+		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaBackgroundTaskCenter.swift" target-dir="SDK SRC/CONTROLLER/" />
+		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaBmsCtrl.swift" target-dir="SDK SRC/CONTROLLER/" />
+		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaIBeaconCtrl.swift" target-dir="SDK SRC/CONTROLLER/" />
+		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaNotificationCenter.swift" target-dir="SDK SRC/CONTROLLER/" />
+		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewCell.swift" target-dir="SDK SRC/VIEW/" />
+		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewCell.xib" target-dir="SDK SRC/VIEW/" />
+		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewController.swift" target-dir="SDK SRC/VIEW/" />
+		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewController.xib" target-dir="SDK SRC/VIEW/" />
+		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteViewController.swift" target-dir="SDK SRC/VIEW/" />
+		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteViewController.xib" target-dir="SDK SRC/VIEW/" />
+		<source-file src="src/ios/SDK SRC/MODEL/ViaBmsUtil.swift" target-dir="SDK SRC/MODEL/" />
+		<source-file src="src/ios/SDK SRC/MODEL/ViaIBeacon.swift" target-dir="SDK SRC/MODEL/" />
+		<source-file src="src/ios/SDK SRC/MODEL/ViaMinisite.swift" target-dir="SDK SRC/MODEL/" />
+		<source-file src="src/ios/SDK SRC/RES/ViaIcons.xcassets" target-dir="SDK SRC/RES/" />
 	</platform>
 </plugin>
