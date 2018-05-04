@@ -33,6 +33,9 @@ $ ionic cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.
 <string>description for location access</string>
 ```
 
+* Capabilities
+- Enable `Location updates` in `Background Modes`
+
 
 ## Sample Codes
 
