@@ -37,5 +37,75 @@ $ ionic cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.
 ## Sample Codes
 
 ```javascript
+// Step 1 optional
+public initCustomer = function() {
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.initCustomer("customer_identifier", "customer_email", "customer_phone", (success) => {
+			console.log("success", success);
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+};
+
+// Step 2 required
+public setting = function() {
+	let enableAlert = true;
+	let enableBackground = true;
+	let enableSite = true;
+	let enableAttendance = true;
+	let enableTracking = true;
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.setting(enableAlert, enableBackground, enableSite, enableAttendance, enableTracking, (success) => {
+			console.log("success", success);
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+}
+
+// Step 3 required
+public initSDK = function() {
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.initSDK("SDK_KEY_FROM_BMS", (success) => {
+			console.log("success", success);
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+};
+
+// Step 4 required
+public startService = function() {
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.startSDK((success) => {
+			console.log("success", success);
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+};
+
+// Step 5 required
+public endService = function() {
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.endSDK((success) => {
+			console.log("success", success);
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+};
+
 
 ```
