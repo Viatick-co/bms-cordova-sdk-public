@@ -19,7 +19,8 @@ class ViaNotificationCenter {
     func initiate() {
         if #available(iOS 10.0, *) {
             notificationCenter = UNUserNotificationCenter.current();
-            notificationOptions = [UNAuthorizationOptions.alert, UNAuthorizationOptions.sound, UNAuthorizationOptions.badge];
+            // notificationOptions = [UNAuthorizationOptions.alert, UNAuthorizationOptions.sound, UNAuthorizationOptions.badge];
+            notificationOptions = UNAuthorizationOptions.alert;
             trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
             (notificationCenter as! UNUserNotificationCenter).getNotificationSettings { (settings) in
                 if settings.authorizationStatus != .authorized {
