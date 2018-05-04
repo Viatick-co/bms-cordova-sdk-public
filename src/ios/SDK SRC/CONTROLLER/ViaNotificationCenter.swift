@@ -12,19 +12,18 @@ import NotificationCenter
 
 class ViaNotificationCenter {
     var notificationCenter: Any?;
-    var notificationOptions: Any?;
+    // var notificationOptions: Any?;
     var trigger: Any?;
     let identifier = "ViaLocalNotification";
     
     func initiate() {
         if #available(iOS 10.0, *) {
             notificationCenter = UNUserNotificationCenter.current();
-            // notificationOptions = [UNAuthorizationOptions.alert, UNAuthorizationOptions.sound, UNAuthorizationOptions.badge];
-            notificationOptions = UNAuthorizationOptions.alert;
+            let notificationOptions: UNAuthorizationOptions = [.alert, .sound, .badge];
             trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
             (notificationCenter as! UNUserNotificationCenter).getNotificationSettings { (settings) in
                 if settings.authorizationStatus != .authorized {
-                    (self.notificationCenter as! UNUserNotificationCenter).requestAuthorization(options: self.notificationOptions as! UNAuthorizationOptions) { (granted, error) in
+                    (self.notificationCenter as! UNUserNotificationCenter).requestAuthorization(options: notificationOptions) { (granted, error) in
                         if !granted {
                             print("[VIATICK]: notification not alowed");
                         }
@@ -33,8 +32,8 @@ class ViaNotificationCenter {
             }
         } else if #available(iOS 9.0, *) {
             notificationCenter = UILocalNotification();
-            notificationOptions = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil);
-            UIApplication.shared.registerUserNotificationSettings(notificationOptions as! UIUserNotificationSettings);
+            let notificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil);
+            UIApplication.shared.registerUserNotificationSettings(notificationSettings);
         }
     }
     
