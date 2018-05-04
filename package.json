@@ -1,9 +1,9 @@
 {
-  "name": "com-viatick-plugins-bms-sdk-public",
+  "name": "bms-cordova-sdk-public",
   "version": "0.1.2",
   "description": "bms cordova sdk",
   "cordova": {
-    "id": "com-viatick-plugins-bms-sdk-public",
+    "id": "bms-cordova-sdk-public",
     "platforms": [
       "ios"
     ]
