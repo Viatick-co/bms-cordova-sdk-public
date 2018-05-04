@@ -9,4 +9,4 @@ $ ionic cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.
 ## Settings
 
 ### iOS xcode
-* Build Settings => SWIFT_VERSION => 3.3
+* Build Settings => SWIFT_VERSION => ^3.3
