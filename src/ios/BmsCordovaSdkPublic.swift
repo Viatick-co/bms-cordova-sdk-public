@@ -1,9 +1,8 @@
 @objc(BmsCordovaSdkPublic) class BmsCordovaSdkPublic : CDVPlugin {
 
-	let viaBmsCtrl = ViaBmsCtrl.sharedInstance;
-
 	@objc(initSDK:)
 	func initSDK(command: CDVInvokedUrlCommand) {
+		let viaBmsCtrl = ViaBmsCtrl.sharedInstance;
 		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
 
 		let sdk_key = command.arguments[0] as? String ?? "no value";
@@ -15,6 +14,7 @@
 
 	@objc(initCustomer:)
 	func initCustomer(command: CDVInvokedUrlCommand) {
+		let viaBmsCtrl = ViaBmsCtrl.sharedInstance;
 		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
 
 		let identifier = command.arguments[0] as? String ?? "no value";
@@ -29,13 +29,14 @@
 
 	@objc(setting:)
 	func setting(command: CDVInvokedUrlCommand) {
+		let viaBmsCtrl = ViaBmsCtrl.sharedInstance;
 		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
 		
 		let alert = command.arguments[0] as? Bool ?? false;
 		let background = command.arguments[1] as? Bool ?? false;
 		let site = command.arguments[2] as? Bool ?? false;
 		let attendance = command.arguments[3] as? Bool ?? false;
-		let tracking = command.arguments[5] as? Bool ?? false;
+		let tracking = command.arguments[4] as? Bool ?? false;
 		viaBmsCtrl.setting(alert: alert, background: background, site: site, attendance: attendance, tracking: tracking);
 		
 		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "setting done!");
@@ -45,6 +46,7 @@
 
 	@objc(startSDK:)
 	func startSDK(command: CDVInvokedUrlCommand) {
+		let viaBmsCtrl = ViaBmsCtrl.sharedInstance;
 		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
 		
 		viaBmsCtrl.startBmsService();
@@ -55,6 +57,7 @@
 	
 	@objc(endSDK:)
 	func endSDK(command: CDVInvokedUrlCommand) {
+		let viaBmsCtrl = ViaBmsCtrl.sharedInstance;
 		var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR);
 		
 		viaBmsCtrl.stopBmsService();

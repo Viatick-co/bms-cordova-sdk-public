@@ -16,6 +16,6 @@ exports.startSDK = function (success, error) {
     exec(success, error, 'BmsCordovaSdkPublic', 'startSDK', []);
 };
 
-exports.stopSDK = function (success, error) {
-    exec(success, error, 'BmsCordovaSdkPublic', 'stopSDK', []);
+exports.endSDK = function (success, error) {
+    exec(success, error, 'BmsCordovaSdkPublic', 'endSDK', []);
 };
