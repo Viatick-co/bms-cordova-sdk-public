@@ -13,17 +13,14 @@ $ ionic cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.
 ### iOS xcode
 
 * Build Settings
-
-- SWIFT_VERSION => ^3.3
+	- SWIFT_VERSION => ^3.3
 
 * Build Phases
-
-- UserNotifications.framework
-- CoreLocation.framework
-- NotificationCenter.framework
+	- UserNotifications.framework
+	- CoreLocation.framework
+	- NotificationCenter.framework
 
 * Info.plist
-
 ```xml
 <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 <string>description for location access</string>
@@ -34,7 +31,7 @@ $ ionic cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.
 ```
 
 * Capabilities
-- Enable `Location updates` in `Background Modes`
+	- Enable `Location updates` in `Background Modes`
 
 
 ## Sample Codes
