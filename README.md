@@ -1,6 +1,6 @@
 # bms-cordova-sdk-public
 
-> Native iOS SDK link https://github.com/Viatick-co/bms-ios-sdk-public[https://github.com/Viatick-co/bms-ios-sdk-public]
+> Native iOS SDK link https://github.com/Viatick-co/bms-ios-sdk-public
 
 ## Installation
 
