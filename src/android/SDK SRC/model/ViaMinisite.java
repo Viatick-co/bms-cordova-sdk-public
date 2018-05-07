@@ -74,6 +74,7 @@ public class ViaMinisite implements Parcelable {
         Bundle b = new Bundle();
         b.putString("title",title);
         b.putString("text",description);
+        b.putString("type",type);
         b.putString("coverUrl",coverUrl);
         b.putString("url",url.toString());
         b.putBoolean("isVisited",isVisited);
@@ -87,6 +88,7 @@ public class ViaMinisite implements Parcelable {
         coverUrl = b.getString("coverUrl");
         url = b.getString("url");
         isVisited = b.getBoolean("isVisited");
+        type = b.getString("type");
     }
 
     public static final Creator<ViaMinisite> CREATOR = new Creator<ViaMinisite>() {

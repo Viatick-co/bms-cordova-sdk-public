@@ -69,7 +69,7 @@ public class MinisiteMenuAdapter extends RecyclerView.Adapter<MinisiteMenuAdapte
                 public void run() {
                     LinearLayout.LayoutParams mParams;
                     mParams = (LinearLayout.LayoutParams) mFrame.getLayoutParams();
-                    mParams.height = mFrame.getWidth();
+//                    mParams.height = mFrame.getWidth();
                     mFrame.setLayoutParams(mParams);
                     mFrame.postInvalidate();
                 }
@@ -110,6 +110,7 @@ public class MinisiteMenuAdapter extends RecyclerView.Adapter<MinisiteMenuAdapte
                     minisiteIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     minisiteIntent.putExtra("url", viaMinisite.getUrl().toString());
                     minisiteIntent.putExtra("title", viaMinisite.getTitle());
+                    minisiteIntent.putExtra("type", viaMinisite.getType());
                     minisiteIntent.putExtra("customerId", ViaBmsUtil.ViaCustomer.customerId);
                     minisiteIntent.putExtra("API_KEY", API_KEY);
 

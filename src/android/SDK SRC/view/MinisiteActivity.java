@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
@@ -33,12 +34,14 @@ import java.util.Map;
 
 public class MinisiteActivity extends AppCompatActivity {
 
+    private static final String TAG = "[VIATICK]";
     private WebView webView;
     private Date start;
     private Date end;
     private String url;
     private String title;
-    int customerId;
+    private int customerId;
+    private String type;
     private RequestQueue queue;
     private ShareActionProvider shareActionProvider;
     private ViaApiCtrl viaApiCtrl;
@@ -65,6 +68,15 @@ public class MinisiteActivity extends AppCompatActivity {
         title = b.getString("title");
         customerId = b.getInt("customerId");
         API_KEY = b.getString("API_KEY");
+        type = b.getString("type");
+
+        if (type.equals("coupon")) {
+            FloatingActionButton shareButton = findViewById(this.getResources().getIdentifier("fab_share", "id", this.getPackageName()));
+            shareButton.hide();
+        }
+
+        String actualUrl = url + "&cid=" + customerId;
+//        Log.i(TAG, actualUrl);
 
         /*
          * Flip animation
@@ -107,18 +119,7 @@ public class MinisiteActivity extends AppCompatActivity {
             }
         });
 
-//        webView.setWebViewClient(new WebViewClient() {
-//            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-//                Toast.makeText(activity, "Error! " + description, Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                return false;
-//            }
-//        });
-
-        webView.loadUrl(url);
+        webView.loadUrl(actualUrl);
     }
 
     @Override

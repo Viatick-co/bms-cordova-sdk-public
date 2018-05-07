@@ -20,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -266,7 +267,7 @@ public class ViaBmsCtrl {
          String model = getDeviceName().replaceAll("-", "");
          String system = ViaBmsUtil.ViaValue.ANDROID;
          String version = System.getProperty("os.version").replaceAll("-","");
-         inputJson.put(ViaBmsUtil.ViaKey.REMARK, CUSTOMER.email);
+         inputJson.put(ViaBmsUtil.ViaKey.REMARK, name + " : " + model + " : " + system + " : " + version);
 
          String url = viaApiCtrl.SDK_ENDPOINT + viaApiCtrl.CORE_CUSTOMER;
 
@@ -355,11 +356,12 @@ public class ViaBmsCtrl {
             coverUrl = (String) cover.get(ViaBmsUtil.ViaKey.URL);
         }
         String type = (String) data.get(ViaBmsUtil.ViaKey.TYPE);
+        Log.i(TAG, "type: " + type);
         ViaMinisite viaMinisite = new ViaMinisite(title,description,coverUrl,url,type);
         MINISITES.add(viaMinisite);
 
         if (SETTING.enableAlert) {
-            scheduleNotification(context, title, description, url, -1L, -1L);
+            scheduleNotification(context, title, description, url, type);
 
         }
         openMinisiteMenu(context);
@@ -382,7 +384,8 @@ public class ViaBmsCtrl {
                 inputJson.put(ViaBmsUtil.ViaKey.DISTANCE, distance);
                 inputJson.put(ViaBmsUtil.ViaKey.IDENTIFIER, CUSTOMER.identifier);
                 inputJson.put(ViaBmsUtil.ViaKey.PHONE, CUSTOMER.phone);
-                inputJson.put(ViaBmsUtil.ViaKey.EMAIL, CUSTOMER.remark);
+                inputJson.put(ViaBmsUtil.ViaKey.EMAIL, CUSTOMER.email);
+                inputJson.put(ViaBmsUtil.ViaKey.REMARK, CUSTOMER.remark);
                 inputJson.put(ViaBmsUtil.ViaKey.DATA, new JSONObject());
 
                 viaApiCtrl.sendPostRequest(queue, viaApiCtrl.API_ENDPOINT + viaApiCtrl.CORE_ATTENDANCE, new ViaInterfaces.ViaCallbackInterface() {
@@ -416,7 +419,8 @@ public class ViaBmsCtrl {
                 inputJson.put(ViaBmsUtil.ViaKey.DISTANCE, distance);
                 inputJson.put(ViaBmsUtil.ViaKey.IDENTIFIER, CUSTOMER.identifier);
                 inputJson.put(ViaBmsUtil.ViaKey.PHONE, CUSTOMER.phone);
-                inputJson.put(ViaBmsUtil.ViaKey.EMAIL, CUSTOMER.remark);
+                inputJson.put(ViaBmsUtil.ViaKey.EMAIL, CUSTOMER.email);
+                inputJson.put(ViaBmsUtil.ViaKey.REMARK, CUSTOMER.remark);
                 inputJson.put(ViaBmsUtil.ViaKey.DATA, new JSONObject());
 
                 viaApiCtrl.sendPutRequest(queue, viaApiCtrl.API_ENDPOINT + viaApiCtrl.CORE_ATTENDANCE, new ViaInterfaces.ViaCallbackInterface() {
@@ -457,7 +461,8 @@ public class ViaBmsCtrl {
                 inputJson.put(ViaBmsUtil.ViaKey.DISTANCE, distance);
                 inputJson.put(ViaBmsUtil.ViaKey.IDENTIFIER, CUSTOMER.identifier);
                 inputJson.put(ViaBmsUtil.ViaKey.PHONE, CUSTOMER.phone);
-                inputJson.put(ViaBmsUtil.ViaKey.EMAIL, CUSTOMER.remark);
+                inputJson.put(ViaBmsUtil.ViaKey.EMAIL, CUSTOMER.email);
+                inputJson.put(ViaBmsUtil.ViaKey.REMARK, CUSTOMER.remark);
                 inputJson.put(ViaBmsUtil.ViaKey.DATA, new JSONObject());
 
                 viaApiCtrl.sendPostRequest(queue, viaApiCtrl.API_ENDPOINT + viaApiCtrl.CORE_TRACKING, new ViaInterfaces.ViaCallbackInterface() {
@@ -551,7 +556,7 @@ public class ViaBmsCtrl {
         return phrase.toString();
     }
 
-    public void scheduleNotification (Context context, String title, String text, String url, Long miniSiteId, Long beaconId) {
+    public void scheduleNotification (Context context, String title, String text, String url, String type) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setContentText(text)
                 .setAutoCancel(true);
@@ -561,6 +566,7 @@ public class ViaBmsCtrl {
 
             intent.putExtra("url", url);
             intent.putExtra("title", title);
+            intent.putExtra("type", type);
             intent.putExtra("customerId", CUSTOMER.customerId);
             intent.putExtra("API_KEY", API_KEY);
             PendingIntent minisiteIntent = PendingIntent.getActivity(context, 0, intent, 0);
