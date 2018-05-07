@@ -29,6 +29,8 @@
                 android:shadowDx="6"
                 android:shadowDy="6"
                 android:shadowRadius="6"
+                android:paddingLeft="8px"
+                android:paddingRight="8px"
                 />
             <TextView android:id="@+id/text"
                 android:layout_width="match_parent"
@@ -39,6 +41,8 @@
                 android:shadowDx="6"
                 android:shadowDy="6"
                 android:shadowRadius="6"
+                android:paddingLeft="8px"
+                android:paddingRight="8px"
                 />
         </LinearLayout>
     </FrameLayout>

@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:layout_height="fill_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/viaMinisiteList"
@@ -18,8 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_file_download"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:backgroundTint="@color/blue"
