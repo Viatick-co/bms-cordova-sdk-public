@@ -27,4 +27,81 @@
 		<source-file src="src/ios/SDK SRC/MODEL/ViaMinisite.swift" />
 		<resource-file src="src/ios/SDK SRC/RES/ViaIcons.xcassets" />
 	</platform>
+
+	<platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BmsCordovaSdkPublic">
+                <param name="android-package" onload="true" value="com.viatick.bmsandroidsdk.plugin.BmsCordovaSdkPublic" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/SDK SRC/plugin" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
+        <source-file src="src/android/SDK SRC/controller" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
+        <source-file src="src/android/SDK SRC/helper" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
+        <source-file src="src/android/SDK SRC/model" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
+				<source-file src="src/android/SDK SRC/view" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
+
+        <resource-file src="src/android/layout/activity_minisite_menu.xml" target="res/layout/activity_minisite_menu.xml" />
+        <resource-file src="src/android/layout/minisite_menu_each.xml" target="res/layout/minisite_menu_each.xml" />
+        <resource-file src="src/android/layout/minisite_web_view.xml" target="res/layout/minisite_web_view.xml" />
+				<resource-file src="src/android/drawable/ic_backspace.png" target="res/drawable-mdpi/ic_backspace.png" />
+				<resource-file src="src/android/drawable/ic_file_download.png" target="res/drawable-mdpi/ic_file_download.png" />
+				<resource-file src="src/android/drawable/ic_share.png" target="res/drawable-mdpi/ic_share.png" />
+				<resource-file src="src/android/drawable/ic_backspace.png" target="res/drawable-xhdpi/ic_backspace.png" />
+				<resource-file src="src/android/drawable/ic_share.png" target="res/drawable-xhdpi/ic_share.png" />
+				<resource-file src="src/android/drawable/ic_file_download.png" target="res/drawable-xhdpi/ic_file_download.png" />
+				<resource-file src="src/android/drawable/ic_backspace.png" target="res/drawable-xxhdpi/ic_backspace.png" />
+				<resource-file src="src/android/drawable/ic_share.png" target="res/drawable-xxhdpi/ic_share.png" />
+				<resource-file src="src/android/drawable/ic_file_download.png" target="res/drawable-xxhdpi/ic_file_download.png" />
+				<resource-file src="src/android/values/colors.xml" target="res/values/colors.xml" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+          <uses-permission android:name="android.permission.INTERNET" />
+          <uses-permission android:name="android.permission.BLUETOOTH" />
+          <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+          <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+          <uses-permission android:name="android.permission.GET_TASKS" />
+
+          <uses-feature
+              android:name="android.hardware.bluetooth_le"
+              android:required="true" />
+
+          <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+          <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+          <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+          <uses-permission android:name="android.permission.READ_CONTACTS" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="application">
+            <activity android:name="com.viatick.bmsandroidsdk.view.MinisiteMenuActivity" android:theme="@style/Base.Theme.AppCompat"/>
+            <activity android:name="com.viatick.bmsandroidsdk.view.MinisiteActivity" android:theme="@style/Base.Theme.AppCompat" />
+
+            <service android:name="com.viatick.bmsandroidsdk.controller.ViaIBeaconCtrl"></service>
+            <service android:name="org.altbeacon.beacon.service.BeaconService"
+                android:enabled="true"
+                android:isolatedProcess="false"
+                android:label="beacon"></service>
+            <service android:name="org.altbeacon.beacon.BeaconIntentProcessor"
+                android:enabled="true"></service>
+
+            <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver">
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+                    <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                    <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                </intent-filter>
+            </receiver>
+
+            <receiver android:name="com.viatick.bmsandroidsdk.helper.ViaBeaconRebootReceiver">
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                </intent-filter>
+            </receiver>
+        </config-file>
+
+        <framework src="com.android.support:design:23.1.1+" />
+        <framework src="org.altbeacon:android-beacon-library:2.8.1+" />
+        <framework src="com.android.volley:volley:1.0.0+" />
+        <framework src="com.squareup.picasso:picasso:2.5.2+" />
+    </platform>
 </plugin>
