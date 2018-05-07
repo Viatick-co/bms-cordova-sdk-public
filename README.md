@@ -2,6 +2,8 @@
 
 > Native iOS SDK link https://github.com/Viatick-co/bms-ios-sdk-public
 
+> Native Android SDK link https://github.com/Viatick-co/bms-android-sdk-public
+
 ## Installation
 
 Run following command in your `ionic / cordova` project root directory.
