@@ -10,17 +10,18 @@ import Foundation
 import UserNotifications
 import NotificationCenter
 
-class ViaNotificationCenter {
+protocol ViaNotificationDelegate {
+    func viaNotificationCenter(center: ViaNotificationCenter, fire notification: String);
+}
+
+class ViaNotificationCenter: NSObject {
     var notificationCenter: Any?;
-    // var notificationOptions: Any?;
-    var trigger: Any?;
     let identifier = "ViaLocalNotification";
     
     func initiate() {
         if #available(iOS 10.0, *) {
             notificationCenter = UNUserNotificationCenter.current();
             let notificationOptions: UNAuthorizationOptions = [.alert, .sound, .badge];
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
             (notificationCenter as! UNUserNotificationCenter).getNotificationSettings { (settings) in
                 if settings.authorizationStatus != .authorized {
                     (self.notificationCenter as! UNUserNotificationCenter).requestAuthorization(options: notificationOptions) { (granted, error) in
@@ -43,7 +44,8 @@ class ViaNotificationCenter {
             content.title = title;
             content.body = body;
             content.sound = UNNotificationSound.default();
-            let request: UNNotificationRequest = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger as? UNNotificationTrigger);
+            let trigger: UNNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
+            let request: UNNotificationRequest = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger);
             (notificationCenter as! UNUserNotificationCenter).add(request) { (error) in
                 if error != nil {
                     print("[VIATICK]: notification error");

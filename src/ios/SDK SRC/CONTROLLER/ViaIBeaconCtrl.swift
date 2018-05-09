@@ -63,19 +63,23 @@ class ViaIBeaconCtrl: NSObject {
     
     func processCLBeacons(beacons: [CLBeacon]) {
         for (i, _) in viaIBeacons.enumerated() {
-            viaIBeacons[i].disappearIdx += 1
+            viaIBeacons[i].disappearIdx += 1;
         }
         for b in beacons {
-            let newViaIBeacon: ViaIBeacon = ViaIBeacon(iBeacon: b, maxDistance: 200, isRequested: false, disappearIdx: 0)
-            let index = indexOf(viaIBeacons: viaIBeacons, viaIbeacon: newViaIBeacon)
+            let newViaIBeacon: ViaIBeacon = ViaIBeacon(iBeacon: b, maxDistance: 200, isRequested: false, disappearIdx: 0);
+            let index = indexOf(viaIBeacons: viaIBeacons, viaIbeacon: newViaIBeacon);
             if index == -1 {
-                viaIBeacons.append(newViaIBeacon)
-                delegate?.viaIBeaconCtrl(controller: self, discover: newViaIBeacon)
+                viaIBeacons.append(newViaIBeacon);
+                delegate?.viaIBeaconCtrl(controller: self, discover: newViaIBeacon);
             } else {
-                viaIBeacons[index].iBeacon = b
-                viaIBeacons[index].disappearIdx = 0
+                viaIBeacons[index].iBeacon = b;
+                if(viaIBeacons[index].disappearIdx > 60) {
+                    delegate?.viaIBeaconCtrl(controller: self, discover: newViaIBeacon);
+                }
+                viaIBeacons[index].disappearIdx = 0;
             }
         }
+        // print("viaIBeacons", viaIBeacons);
         delegate?.viaIbeaconCtrl(controller: self, rangeBeacons: viaIBeacons);
     }
     

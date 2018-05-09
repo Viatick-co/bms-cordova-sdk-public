@@ -21,4 +21,11 @@ struct ViaMinisite {
         self.url = url;
         self.type = type;
     }
+    func same(viaMinisite: ViaMinisite) -> Bool {
+        if self.title == viaMinisite.title && self.description == viaMinisite.description {
+            return true
+        } else {
+            return false
+        }
+    }
 }

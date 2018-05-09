@@ -171,7 +171,10 @@ class ViaBmsCtrl: NSObject {
         }
         let type: String = data[ViaKey.TYPE.rawValue] as! String;
         let viaMinisite: ViaMinisite = ViaMinisite(title: title, description: description, coverUrl: coverUrl, url: url, type: type);
-        MINISITES.append(viaMinisite);
+        let index = indexOf(viaMinisites: MINISITES, viaMinisite: viaMinisite);
+        if index == -1 {
+            MINISITES.append(viaMinisite);
+        }
         // print("[VIATICK]: minisites", MINISITES);
         if SETTING.enableAlert {
             viaNotificationCenter.shootNotification(title: title, body: description);
@@ -278,6 +281,17 @@ class ViaBmsCtrl: NSObject {
                 self.SETTING.isModal = true;
             }
         }
+    }
+    
+    func indexOf(viaMinisites: [ViaMinisite], viaMinisite: ViaMinisite) -> Int {
+        var index: Int = -1;
+        for (i, m) in viaMinisites.enumerated() {
+            if m.same(viaMinisite: viaMinisite) {
+                index = i;
+                break
+            }
+        }
+        return index
     }
 }
 
