@@ -10,6 +10,10 @@ Run following command in your `ionic / cordova` project root directory.
 
 ```
 $ ionic cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.git
+
+or
+
+$ cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.git
 ```
 
 ## Settings
