@@ -29,12 +29,17 @@ class ViaMinisiteViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        createButtons();
+        // createButtons();
         let cidString: String = String(customer!.customerId);
         let modifiedUrl: String = (minisite?.url)! + "&cid=" + cidString;
         let url: URL = URL(string: modifiedUrl)!;
         let request: URLRequest = URLRequest(url: url);
         minisiteWebView.loadRequest(request);
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews();
+        createButtons();
     }
     
     override func viewDidDisappear(_ animated: Bool) {
