@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol ViaBmsCtrlDelegate {
+    func viaBmsCtrl(controller: ViaBmsCtrl, inited status: Bool);
+}
+
 class ViaBmsCtrl: NSObject {
     static let sharedInstance = ViaBmsCtrl();
     
@@ -21,6 +25,8 @@ class ViaBmsCtrl: NSObject {
     var FETCH_INTERVAL: ViaFetchInterval = ViaFetchInterval();
     
     var MINISITES: [ViaMinisite] = [];
+    
+    var delegate: ViaBmsCtrlDelegate?;
     
     let viaApiCtrl = ViaApiCtrl();
     let viaIBeaconCtrl = ViaIBeaconCtrl();
@@ -119,6 +125,7 @@ class ViaBmsCtrl: NSObject {
         CUSTOMER.phone = data[ViaKey.PHONE.rawValue] as! String;
         CUSTOMER.remark = data[ViaKey.REMARK.rawValue] as! String;
         // print("[VIATICK]: customer", CUSTOMER);
+        delegate?.viaBmsCtrl(controller: self, inited: true);
     }
     
     func startBmsService() {
