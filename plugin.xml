@@ -35,25 +35,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/SDK SRC/plugin" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
-        <source-file src="src/android/SDK SRC/controller" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
-        <source-file src="src/android/SDK SRC/helper" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
-        <source-file src="src/android/SDK SRC/model" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
-				<source-file src="src/android/SDK SRC/view" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
-
-        <resource-file src="src/android/layout/activity_minisite_menu.xml" target="res/layout/activity_minisite_menu.xml" />
-        <resource-file src="src/android/layout/minisite_menu_each.xml" target="res/layout/minisite_menu_each.xml" />
-        <resource-file src="src/android/layout/minisite_web_view.xml" target="res/layout/minisite_web_view.xml" />
-				<resource-file src="src/android/drawable/ic_backspace.png" target="res/drawable-mdpi/ic_backspace.png" />
-				<resource-file src="src/android/drawable/ic_file_download.png" target="res/drawable-mdpi/ic_file_download.png" />
-				<resource-file src="src/android/drawable/ic_share.png" target="res/drawable-mdpi/ic_share.png" />
-				<resource-file src="src/android/drawable/ic_backspace.png" target="res/drawable-xhdpi/ic_backspace.png" />
-				<resource-file src="src/android/drawable/ic_share.png" target="res/drawable-xhdpi/ic_share.png" />
-				<resource-file src="src/android/drawable/ic_file_download.png" target="res/drawable-xhdpi/ic_file_download.png" />
-				<resource-file src="src/android/drawable/ic_backspace.png" target="res/drawable-xxhdpi/ic_backspace.png" />
-				<resource-file src="src/android/drawable/ic_share.png" target="res/drawable-xxhdpi/ic_share.png" />
-				<resource-file src="src/android/drawable/ic_file_download.png" target="res/drawable-xxhdpi/ic_file_download.png" />
-				<resource-file src="src/android/values/colors.xml" target="res/values/colors.xml" />
+        <source-file src="src/android/bms-android-sdk-release.aar" target-dir="libs/bms-android-sdk-release.aar" />
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
           <uses-permission android:name="android.permission.INTERNET" />
@@ -99,9 +81,6 @@
             </receiver>
         </config-file>
 
-        <framework src="com.android.support:design:23.1.1+" />
-        <framework src="org.altbeacon:android-beacon-library:2.8.1+" />
-        <framework src="com.android.volley:volley:1.0.0+" />
-        <framework src="com.squareup.picasso:picasso:2.5.2+" />
+        <framework src="src/android/BmsCordovaSdkPublic.gradle" custom="true" type="gradleReference" />
     </platform>
 </plugin>
