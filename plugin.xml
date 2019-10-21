@@ -35,7 +35,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/bms-android-sdk-release.aar" target-dir="libs/bms-android-sdk-release.aar" />
+        <source-file src="src/android/bms-android-sdk-release.aar" target-dir="libs" />
 				<source-file src="src/android/SDK SRC/plugin" target-dir="app/src/main/java/com/viatick/bmsandroidsdk" />
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
