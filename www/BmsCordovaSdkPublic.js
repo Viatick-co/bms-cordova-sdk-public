@@ -8,8 +8,10 @@ exports.initCustomer = function (identifier, phone, email, success, error) {
     exec(success, error, 'BmsCordovaSdkPublic', 'initCustomer', [identifier, phone, email]);
 };
 
-exports.setting = function (alert, background, site, attendance, tracking, success, error) {
-    exec(success, error, 'BmsCordovaSdkPublic', 'setting', [alert, background, site, attendance, tracking]);
+exports.setting = function (alert, background, site, minisitesView,
+  autoSiteDuration, tracking, enableMQTT, attendance, checkinDuration, checkoutDuration, success, error) {
+    exec(success, error, 'BmsCordovaSdkPublic', 'setting', [alert, background, site, minisitesView,
+      autoSiteDuration, tracking, enableMQTT, attendance, checkinDuration, checkoutDuration]);
 };
 
 exports.startSDK = function (success, error) {
@@ -18,4 +20,12 @@ exports.startSDK = function (success, error) {
 
 exports.endSDK = function (success, error) {
     exec(success, error, 'BmsCordovaSdkPublic', 'endSDK', []);
+};
+
+exports.checkIn = function (success, error) {
+    exec(success, error, 'BmsCordovaSdkPublic', 'checkIn', []);
+};
+
+exports.checkOut = function (success, error) {
+    exec(success, error, 'BmsCordovaSdkPublic', 'checkOut', []);
 };
