@@ -13,6 +13,7 @@ import android.widget.Toast;
 // Cordova-required packages
 import com.viatick.bmsandroidsdk.controller.ViaBmsCtrl;
 import com.viatick.bmsandroidsdk.model.ViaZone;
+import com.viatick.bmsandroidsdk.model.ViaBmsUtil;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -30,6 +31,8 @@ import java.util.List;
 import static android.content.Context.BIND_AUTO_CREATE;
 
 public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.ViaBmsCtrlDelegate {
+  String TAG = "BmsCordovaSdkPublic";
+
   ViaBmsCtrl viaBmsCtrl = new ViaBmsCtrl();
   CallbackContext initSdkCallback;
   CallbackContext initCustomerCallback;
@@ -60,10 +63,11 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
           return true;
       } else if (action.equals("setting")) {
           viaBmsCtrl.settings(args.getBoolean(0), args.getBoolean(1),
-                  args.getBoolean(2), args.getBoolean(3),
-                  args.getString(4), args.getIntOrNull(5), args.getBoolean(6),
-                  args.getBoolean(7), args.getBoolean(8), args.getBoolean(9),
-                  args.getIntOrNull(10), args.getIntOrNull(11));
+                  args.getBoolean(2),
+                  ((args.getString(3) == "AUTO") ? ViaBmsUtil.MinisiteViewType.AUTO :
+                  ViaBmsUtil.MinisiteViewType.LIST), args.getInt(4), args.getBoolean(5),
+                  args.getBoolean(6), args.getBoolean(7),
+                  args.getInt(8), args.getInt(9));
 
           callbackContext.success("");
           return true;
@@ -73,11 +77,11 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
           return true;
       } else if (action.equals("startSDK")) {
           viaBmsCtrl.startBmsService();
-          callbackContext.success();
+          callbackContext.success("");
           return true;
       } else if (action.equals("endSDK")) {
           viaBmsCtrl.stopBmsService();
-          callbackContext.success();
+          callbackContext.success("");
           return true;
       } else if (action.equals("checkIn")) {
           checkinCallback = callbackContext;
@@ -99,9 +103,9 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
           // authorizedZones is optional field
           // sdkInited callback will be called after initialization
           this.zones = zones;
-          initSdkCallback.ok();
+          initSdkCallback.success("");
       } else {
-          initSdkCallback.error();
+          initSdkCallback.error("");
       }
   }
 
@@ -110,9 +114,9 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
   public void customerInited(boolean inited) {
       Log.d(TAG, "Customer Inited " + inited);
       if (inited) {
-          initCustomerCallback.ok();
+          initCustomerCallback.success("");
       } else {
-          initCustomerCallback.error();
+          initCustomerCallback.error("");
       }
   }
 
@@ -134,19 +138,16 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
       checkoutCallback.sendPluginResult(pluginResult);
   }
 
-  // override this method
   @Override
-  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-      super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-      // must put this line of code in after super.onRequestPermissionsResult
-      ViaBmsCtrl.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+  public void onRequestPermissionResult(int requestCode, String[] permissions,
+  int[] grantResults) throws JSONException {
+      ViaBmsCtrl.onRequestPermissionsResult(cordova.getActivity(), requestCode, permissions, grantResults);
   }
 
   // override this method
   @Override
-  public void onResume() {
-      super.onResume();
+  public void onResume(boolean multitasking) {
+      super.onResume(multitasking);
 
       // must put this line of code in after super.onResume()
       ViaBmsCtrl.onResume();
