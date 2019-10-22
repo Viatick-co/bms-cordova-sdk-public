@@ -5,12 +5,12 @@
 		<clobbers target="cordova.plugins.BmsCordovaSdkPublic" />
 	</js-module>
 	<platform name="ios">
-		<framework src="src/ios/BmsSDK.framework" embed="true" custom="true" />
 		<config-file target="config.xml" parent="/*">
 			<feature name="BmsCordovaSdkPublic">
 				<param name="ios-package" value="BmsCordovaSdkPublic" />
 			</feature>
 		</config-file>
+
 		<config-file target="*-Info.plist" parent="CFBundleURLTypes">
 			<array>
 			    <dict>
@@ -23,6 +23,29 @@
 			    </dict>
 			</array>
 		</config-file>
+
+		<config-file target="*-Info.plist" parent="UIBackgroundModes">
+    	<array>
+      	<string>location</string>
+      </array>
+    </config-file>
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="BackgroundLocationServices">
+      	<param name="ios-package" value="BackgroundLocationServices"/>
+      </feature>
+    </config-file>
+
+		<config-file parent="aps-environment" target="*/Entitlements-Debug.plist">
+		    <string>development</string>
+		</config-file>
+		<config-file parent="aps-environment" target="*/Entitlements-Release.plist">
+			<string>production</string>
+		</config-file>
+
+		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
+
+		<framework src="src/ios/BmsSDK.framework" embed="true" custom="true" />
 	</platform>
 
 	<platform name="android">
