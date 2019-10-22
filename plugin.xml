@@ -5,27 +5,24 @@
 		<clobbers target="cordova.plugins.BmsCordovaSdkPublic" />
 	</js-module>
 	<platform name="ios">
+		<framework src="src/ios/BmsSDK.framework" embed="true" custom="true" />
 		<config-file target="config.xml" parent="/*">
 			<feature name="BmsCordovaSdkPublic">
 				<param name="ios-package" value="BmsCordovaSdkPublic" />
 			</feature>
 		</config-file>
-		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
-		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaApiCtrl.swift" />
-		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaBackgroundTaskCenter.swift" />
-		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaBmsCtrl.swift" />
-		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaIBeaconCtrl.swift" />
-		<source-file src="src/ios/SDK SRC/CONTROLLER/ViaNotificationCenter.swift" />
-		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewCell.swift" />
-		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewCell.xib" />
-		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewController.swift" />
-		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteTableViewController.xib" />
-		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteViewController.swift" />
-		<source-file src="src/ios/SDK SRC/VIEW/ViaMinisiteViewController.xib" />
-		<source-file src="src/ios/SDK SRC/MODEL/ViaBmsUtil.swift" />
-		<source-file src="src/ios/SDK SRC/MODEL/ViaIBeacon.swift" />
-		<source-file src="src/ios/SDK SRC/MODEL/ViaMinisite.swift" />
-		<resource-file src="src/ios/SDK SRC/RES/ViaIcons.xcassets" />
+		<config-file target="*-Info.plist" parent="CFBundleURLTypes">
+			<array>
+			    <dict>
+			        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+			        <string>description for location access</string>
+							<key>NSLocationWhenInUseUsageDescription</key>
+							<string>description for location access</string>
+							<key>NSLocationAlwaysUsageDescription</key>
+							<string>description for location access</string>
+			    </dict>
+			</array>
+		</config-file>
 	</platform>
 
 	<platform name="android">

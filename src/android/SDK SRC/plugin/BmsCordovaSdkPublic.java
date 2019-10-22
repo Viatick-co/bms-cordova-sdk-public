@@ -32,8 +32,6 @@ import static android.content.Context.BIND_AUTO_CREATE;
 
 public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.ViaBmsCtrlDelegate {
   String TAG = "BmsCordovaSdkPublic";
-
-  ViaBmsCtrl viaBmsCtrl = new ViaBmsCtrl();
   CallbackContext initSdkCallback;
   CallbackContext initCustomerCallback;
   CallbackContext checkinCallback;
@@ -58,11 +56,14 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
   public boolean execute(String action, JSONArray args,
     final CallbackContext callbackContext) throws JSONException {
       if (action.equals("initCustomer")) {
-          viaBmsCtrl.initCustomer(args.getString(0), args.getString(1),
+          initCustomerCallback = callbackContext;
+          Log.d(TAG, "initCustomer: " + args.getString(0) + " " + args.getString(1)
+          + " " + args.getString(2));
+          ViaBmsCtrl.initCustomer(args.getString(0), args.getString(1),
                   args.getString(2), this.zones);
           return true;
       } else if (action.equals("setting")) {
-          viaBmsCtrl.settings(args.getBoolean(0), args.getBoolean(1),
+          ViaBmsCtrl.settings(args.getBoolean(0), args.getBoolean(1),
                   args.getBoolean(2),
                   ((args.getString(3) == "AUTO") ? ViaBmsUtil.MinisiteViewType.AUTO :
                   ViaBmsUtil.MinisiteViewType.LIST), args.getInt(4), args.getBoolean(5),
@@ -73,14 +74,22 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
           return true;
       } else if (action.equals("initSDK")) {
           initSdkCallback = callbackContext;
-          viaBmsCtrl.initSdk(cordova.getActivity(), args.getString(0));
+          ViaBmsCtrl.initSdk(cordova.getActivity(), args.getString(0));
           return true;
       } else if (action.equals("startSDK")) {
-          viaBmsCtrl.startBmsService();
+          boolean sdkInited = ViaBmsCtrl.isSdkInited();
+          boolean bmsRunning = ViaBmsCtrl.isBmsRunning();
+
+          if (!bmsRunning && sdkInited) {
+              Log.d(TAG, "Bms Starting");
+              ViaBmsCtrl.startBmsService();
+          }
+
           callbackContext.success("");
+
           return true;
       } else if (action.equals("endSDK")) {
-          viaBmsCtrl.stopBmsService();
+          ViaBmsCtrl.stopBmsService();
           callbackContext.success("");
           return true;
       } else if (action.equals("checkIn")) {
@@ -103,6 +112,7 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
           // authorizedZones is optional field
           // sdkInited callback will be called after initialization
           this.zones = zones;
+          Log.d(TAG, "zones: " + zones);
           initSdkCallback.success("");
       } else {
           initSdkCallback.error("");
