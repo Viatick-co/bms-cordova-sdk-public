@@ -44,7 +44,6 @@
 		</config-file>
 
 		<source-file src="src/ios/BmsCordovaSdkPublic.swift" />
-		<source-file src="src/ios/BmsSDK.framework" />
 
 		<framework src="src/ios/BmsSDK.framework" embed="true" custom="true" />
 	</platform>
