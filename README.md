@@ -21,7 +21,7 @@ $ cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.git
 ### iOS xcode
 
 * Build Settings
-	- SWIFT_VERSION => ^5.0.1
+	- SWIFT_VERSION => ^5.1
 
 * Build Phases
 	- UserNotifications.framework
