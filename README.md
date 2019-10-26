@@ -60,10 +60,26 @@ public setting = function() {
 	let checkinDuration = 15; // duration of the device staying in the authorized zones to be considered "checked in"
 	let checkoutDuration = 15; // duration of the device staying out of the authorized zones to be considered "checked out"
 
+	// ibeacons that you want to return distance callback
+	let iBeacons = [
+       {
+         uuid: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E",
+         major: 50,
+         minor: 40
+       },
+       {
+         uuid: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E",
+         major: 100,
+         minor: 1
+       }
+  ]
+
+	let bmsEnvironment = "DEV"; // BMS environment, default is "PROD"
+
 	try {
 		cordova.plugins.BmsCordovaSdkPublic.setting(enableAlert, enableBackground, enableSite,
 			minisitesView, autoSiteDuration, tracking, enableMQTT, attendance, checkinDuration,
-			checkoutDuration, (success) => {
+			checkoutDuration, iBeacons, bmsEnvironment, (success) => {
 			console.log("success", success);
 		}, (error) => {
 			console.log("error", error);
@@ -145,6 +161,27 @@ public checkOut = function() {
 	try {
 		cordova.plugins.BmsCordovaSdkPublic.checkIn((success) => {
 			console.log("success", success);
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+};
+
+// Step 8 optional, return callback of iBeacon information and distance
+// everytime an iBeacon among the filtered iBeacons on settings is detected
+public checkOut = function() {
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.onDistanceBeacons((iBeacons) => {
+			// Example:
+			// iBeacons = [{
+			// 	uuid: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E",
+			// 	major: 50,
+			// 	minor: 40,
+			// 	distance: 5.5
+			// }]
+		}]
 		}, (error) => {
 			console.log("error", error);
 		});
