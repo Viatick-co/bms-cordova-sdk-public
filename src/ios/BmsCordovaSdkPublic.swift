@@ -6,7 +6,8 @@ import BmsSDK
 	private var initCustomerCallbackId: String!;
 	private var checkinCallbackId: String!
 	private var checkoutCallbackId: String!
-    private var zones: [ViaZone]!
+  private var onDistanceBeaconsCallbackId: String!
+  private var zones: [ViaZone]!
 
 	override func pluginInitialize() {
         viaBmsCtrl = ViaBmsCtrl.sharedInstance;
@@ -95,6 +96,11 @@ import BmsSDK
 	func checkOut(command: CDVInvokedUrlCommand) {
         self.checkoutCallbackId = command.callbackId;
 	}
+
+  @objc(onDistanceBeacons:)
+	func onDistanceBeacons(command: CDVInvokedUrlCommand) {
+        self.onDistanceBeaconsCallbackId = command.callbackId;
+	}
 }
 
 extension BmsCordovaSdkPublic: ViaBmsCtrlDelegate {
@@ -139,5 +145,13 @@ extension BmsCordovaSdkPublic: ViaBmsCtrlDelegate {
         let pluginResult: CDVPluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "");
         pluginResult.setKeepCallbackAs(true);
         self.commandDelegate!.send(pluginResult, callbackId: checkoutCallbackId);
+    }
+
+    func onDistanceBeacons(beacons: [IBeacon]) {
+        print("onDistanceBeacons callback");
+
+        let pluginResult: CDVPluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: beacons);
+        pluginResult.setKeepCallbackAs(true);
+        self.commandDelegate!.send(pluginResult, callbackId: onDistanceBeaconsCallbackId);
     }
 }
