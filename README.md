@@ -20,6 +20,9 @@ $ cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.git
 
 ## Settings
 
+## Android
+*	Minimum Android API Version: 21
+
 ### iOS xcode
 
 * Build Settings
