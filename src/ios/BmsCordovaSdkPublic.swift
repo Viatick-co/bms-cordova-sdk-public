@@ -48,6 +48,11 @@ import BmsSDK
         let checkoutDuration = command.arguments[9] as! Double;
         let beaconsInput:NSArray = command.arguments[10] as! NSArray;
         let environmentStr = command.arguments[11] as? String;
+        let beaconRegionRange = command.arguments[12] as! Double;
+        let beaconRegionUUIDFilter = command.arguments[12] as! Boolean;
+        let isBroadcasting = command.arguments[13] as! Boolean;
+        let proximityAlert = command.arguments[14] as! Boolean;
+        let proximityAlertThreshold = command.arguments[15] as! Double;
 
         var minisitesView: MinisiteViewType = .LIST;
         if (minisitesViewString == "AUTO") {
@@ -75,7 +80,12 @@ import BmsSDK
 
         viaBmsCtrl.setting(alert: alert, background: background, site: site, minisitesView: minisitesView, autoSiteDuration: autoSiteDuration,
                            tracking: tracking,
-                           enableMQTT: enableMQTT, attendance: attendance, checkinDuration: checkinDuration, checkoutDuration: checkoutDuration, requestDistanceBeacons: beacons, bmsEnvironment: bmsEnvironment);
+                           enableMQTT: enableMQTT, attendance: attendance, checkinDuration: checkinDuration, checkoutDuration: checkoutDuration, requestDistanceBeacons: beacons, bmsEnvironment: bmsEnvironment,
+                               beaconRegionRange: beaconRegionRange,
+                               beaconRegionUUIDFilter: beaconRegionUUIDFilter,
+                               isBroadcasting: isBroadcasting,
+                               proximityAlert: proximityAlert,
+                               proximityAlertThreshold: proximityAlertThreshold);
 
 		pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "setting done!");
 
