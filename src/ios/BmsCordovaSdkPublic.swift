@@ -49,32 +49,32 @@ import BmsSDK
         let beaconsInput:NSArray = command.arguments[10] as! NSArray;
         let environmentStr = command.arguments[11] as? String;
         let beaconRegionRange = command.arguments[12] as! Double;
-        let beaconRegionUUIDFilter = command.arguments[12] as! Boolean;
-        let isBroadcasting = command.arguments[13] as! Boolean;
-        let proximityAlert = command.arguments[14] as! Boolean;
+        let beaconRegionUUIDFilter = command.arguments[12] as? Bool ?? false;
+        let isBroadcasting = command.arguments[13] as? Bool ?? false;
+        let proximityAlert = command.arguments[14] as? Bool ?? false;
         let proximityAlertThreshold = command.arguments[15] as! Double;
 
         var minisitesView: MinisiteViewType = .LIST;
         if (minisitesViewString == "AUTO") {
             minisitesView = .AUTO;
         }
-        
+
         var bmsEnvironment: BmsEnvironment = BmsEnvironment.PROD;
         if (environmentStr == "CHINA") {
             bmsEnvironment = BmsEnvironment.CHINA;
         } else if (environmentStr == "DEV") {
             bmsEnvironment = BmsEnvironment.DEV;
         }
-        
+
         var beacons:[IBeacon] = [];
         for beaconInput in (beaconsInput as NSArray as! [NSDictionary]) {
             let uuidStr:String = beaconInput.value(forKey: "uuid") as! String;
             print("uuid ", uuidStr);
-            
+
             let beacon = IBeacon.init(uuid: beaconInput.value(forKey: "uuid") as! String,
             major: beaconInput.value(forKey: "major") as! Int,
             minor: beaconInput.value(forKey: "minor") as! Int);
-            
+
             beacons.append(beacon);
         }
 
@@ -177,9 +177,13 @@ extension BmsCordovaSdkPublic: ViaBmsCtrlDelegate {
         self.commandDelegate!.send(pluginResult, callbackId: checkoutCallbackId);
     }
 
+    func onProximityAlert() {
+        print("onProximityAlert");
+    }
+
     func onDistanceBeacons(beacons: [IBeacon]) {
         print("onDistanceBeacons callback");
-        
+
         var beaconsOutput:[NSDictionary] = [];
         for beacon in (beacons as NSArray as! [IBeacon]) {
             var beaconOutput:[String:Any] = [:];
