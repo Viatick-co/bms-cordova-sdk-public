@@ -38,6 +38,8 @@ $ cordova plugin add https://github.com/Viatick-co/bms-cordova-sdk-public.git
 <string>description for location access</string>
 <key>NSLocationAlwaysUsageDescription</key>
 <string>description for location access</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>description for location access</string>
 ```
 
 * Capabilities
@@ -188,6 +190,20 @@ public checkOut = function() {
 			// 	minor: 40,
 			// 	distance: 5.5
 			// }]
+		}]
+		}, (error) => {
+			console.log("error", error);
+		});
+	} catch(e) {
+		console.log("exception", e);
+	}
+};
+
+// Step 9 optional, open a device site URL (for example the site URL received
+// upon scanning NFC Tag managed by BMS). Can only call after the SDK is initiated
+public openDeviceSite = function(url) {
+	try {
+		cordova.plugins.BmsCordovaSdkPublic.openDeviceSite(url, (success) => {
 		}]
 		}, (error) => {
 			console.log("error", error);
