@@ -83,12 +83,14 @@ public setting = function() {
 	let proximityAlert = false; // set it to true to enable alert when proximity period with a filtered device exceed proximityAlertThreshold
 	let proximityAlertThreshold = 120; // minimum how long is the proximity period, in seconds
 
+	let scanMode = 1; // optional, 0 for low-battery scan mode, 1 for balanced scan mode, 2 for low-latency scan mode
+
 
 	try {
 		cordova.plugins.BmsCordovaSdkPublic.setting(
 			enableAlert, enableBackground, enableSite,
 			minisitesView, autoSiteDuration, tracking, enableMQTT, attendance, checkinDuration,
-			checkoutDuration, iBeacons, bmsEnvironment, beaconRegionRange, beaconRegionUUIDFilter, isBroadcasting, proximityAlert, proximityAlertThreshold, (success) => {
+			checkoutDuration, iBeacons, bmsEnvironment, beaconRegionRange, beaconRegionUUIDFilter, isBroadcasting, proximityAlert, proximityAlertThreshold, scanMode, (success) => {
 			console.log("success", success);
 		}, (error) => {
 			console.log("error", error);

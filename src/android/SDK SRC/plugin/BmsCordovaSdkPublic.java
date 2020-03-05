@@ -1,13 +1,12 @@
 package com.viatick.bmsandroidsdk.plugin;
 // The native Toast API
 import android.Manifest;
+import android.bluetooth.le.ScanSettings;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 // Cordova-required packages
@@ -62,10 +61,10 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
     final CallbackContext callbackContext) throws JSONException {
       if (action.equals("initCustomer")) {
           initCustomerCallback = callbackContext;
-          Log.d(TAG, "initCustomer: " + args.getString(0) + " " + args.getString(1)
-          + " " + args.getString(2));
-          ViaBmsCtrl.initCustomer(args.getString(0), args.getString(1),
-                  args.getString(2), this.zones);
+          Log.d(TAG, "initCustomer: " + args.getString(0) + " " + args.getString(2)
+          + " " + args.getString(1));
+          ViaBmsCtrl.initCustomer(args.getString(0), args.getString(2),
+                  args.getString(1), this.zones);
           return true;
       } else if (action.equals("setting")) {
           try {
@@ -109,7 +108,7 @@ public class BmsCordovaSdkPublic extends CordovaPlugin implements ViaBmsCtrl.Via
                     args.getBoolean(6), args.getBoolean(7),
                     args.getInt(8), args.getInt(9), requestDistanceBeacons,
                     bmsEnvironment, args.getDouble(12), args.getBoolean(13), args.getBoolean(14),
-                    args.getBoolean(15), args.getInt(16));
+                    args.getBoolean(15), args.getInt(16), args.get(17) != null ? args.getInt(17) : ScanSettings.SCAN_MODE_BALANCED);
 
             Log.d(TAG, "initSettings");
 
